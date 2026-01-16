@@ -30,12 +30,15 @@ if not user_api_key:
 
 # 3. INITIALISATION DE L'AGENT (Correction ici)
 try:
-    # On passe le result_type directement à l'initialisation de l'Agent
-    model = GroqModel('llama-3.3-70b-versatile', api_key=user_api_key)
+    # Définir la clé API en variable d'environnement pour Groq
+    os.environ['GROQ_API_KEY'] = user_api_key
+    
+    # Initialiser le modèle Groq
+    model = GroqModel('llama-3.3-70b-versatile')
     
     agent = Agent(
         model=model, 
-        result_type=IncidentReport,  # FIX: C'est ici qu'on le définit maintenant
+        output_type=IncidentReport,  # FIX: Utiliser output_type au lieu de result_type
         system_prompt="Tu es un agent SRE expert. Analyse les logs et utilise tes outils pour enquêter."
     )
 except Exception as e:
@@ -76,7 +79,10 @@ if st.button("Lancer l'audit intelligent"):
             # FIX: On retire result_type d'ici car il est déjà dans l'agent
             result = loop.run_until_complete(agent.run(prompt))
             
-            res = result.data
+            st.write("DEBUG: Result received:", result)
+            st.write("DEBUG: Result output:", result.output)
+            
+            res = result.output
             col1, col2 = st.columns(2)
             with col1:
                 st.metric("Sévérité", res.severity)
@@ -87,4 +93,6 @@ if st.button("Lancer l'audit intelligent"):
             with st.expander("🔗 Trace d'investigation (JSON)"):
                 st.json(result.all_messages_json())
         except Exception as e:
+            import traceback
             st.error(f"Erreur d'exécution : {e}")
+            st.error(traceback.format_exc())

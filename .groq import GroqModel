@@ -1,0 +1,20 @@
+Help on function __init__ in module pydantic_ai.models.groq:
+
+____iinniitt____(
+    self,
+    model_name: 'GroqModelName',
+    *,
+    provider: "Literal['groq', 'gateway'] | Provider[AsyncGroq]" = 'groq',
+    profile: 'ModelProfileSpec | None' = None,
+    settings: 'ModelSettings | None' = None
+)
+    Initialize a Groq model.
+
+    Args:
+        model_name: The name of the Groq model to use. List of model names available
+            [here](https://console.groq.com/docs/models).
+        provider: The provider to use for authentication and API access. Can be either the string
+            'groq' or an instance of `Provider[AsyncGroq]`. If not provided, a new provider will be
+            created using the other parameters.
+        profile: The model profile to use. Defaults to a profile picked by the provider based on the model name.
+        settings: Model-specific settings that will be used as defaults for this model.
