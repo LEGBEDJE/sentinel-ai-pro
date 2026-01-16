@@ -1,0 +1,7 @@
+streamlit
+pydantic-ai
+groq
+pandas
+nest-asyncio
+httpx
+pydantic>=2.0.0
