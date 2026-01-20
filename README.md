@@ -18,3 +18,8 @@ Contrairement à un simple chatbot, cet agent utilise le **Tool Calling** pour e
 1. Entrez votre clé API Groq.
 2. Cliquez sur "Lancer l'audit".
 3. Observez l'agent appeler les outils dans la section "Trace d'investigation".
+
+ ## Installation locale
+Cloner le repo : git clone https://github.com/LEGBEDJE/sentinel-ai-pro.git
+Installer les dépendances : pip install -r requirements.txt
+Lancer l'app : streamlit run 
