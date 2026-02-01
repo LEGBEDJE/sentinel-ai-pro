@@ -8,6 +8,15 @@ from pydantic_ai import Agent, RunContext
 from pydantic_ai.models.groq import GroqModel
 from pydantic import BaseModel, Field
 
+################# add  your api key .env file ######
+
+
+# Configuration
+#nest_asyncio.apply()
+#load_dotenv()
+#user_api_key = os.getenv("your_api_key") 
+
+
 # Configuration indispensable
 nest_asyncio.apply()
 
