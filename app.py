@@ -12,7 +12,6 @@ from pydantic import BaseModel, Field
 
 
 # Configuration
-#nest_asyncio.apply()
 #load_dotenv()
 #user_api_key = os.getenv("your_api_key") 
 
